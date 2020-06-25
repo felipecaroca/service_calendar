@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import firebase from 'firebase/app'
+import axios from 'axios'
 
 
 export default function Home(props) {
-  console.log(props)
+
   return (
     <div className="container">
       <Head>
@@ -24,24 +24,15 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const db = firebase.firestore()
-  const res = await db.collection('lala').get().then(querySnapshot=>{
-    let response = []
-    querySnapshot.forEach(doc=>{
-      response.push(doc.data())
-    })
-    return response
-  })
-  // const res = querySnapshot.map(doc=>{
-  //   return doc.data()
-  // })
 
-  console.log(res)
 
+  const data = await axios.get(`${process.env.SITE_URL}/api/hello`)
+    .then((res)=>res.data)
+    .catch((err)=>err.message)
+console.log(data)
   return {
     props: {
-
-      res
+     data
     }
   }
 }
