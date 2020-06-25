@@ -2,8 +2,8 @@ import Head from 'next/head'
 import axios from 'axios'
 
 
-export default function Home(props) {
-
+export default function Home({data}) {
+  console.log(data.data)
   return (
     <div className="container">
       <Head>
@@ -12,7 +12,22 @@ export default function Home(props) {
       </Head>
 
       <main>
-        lala
+        <table>
+          <thead>
+          <tr>
+            <th>id</th>
+            <th>a</th>
+          </tr>
+          </thead>
+          <tbody>
+          {data.data.map(res=>(
+            <tr key={res.ID}>
+              <td>{res.ID}</td>
+              <td>{res.a}</td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
 
       </main>
 
