@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import axios from 'axios'
-
+import Button from "@material-ui/core/Button";
 
 export default function Home({data}) {
   console.log(data.data)
+
   return (
     <div className="container">
       <Head>
@@ -20,14 +21,17 @@ export default function Home({data}) {
           </tr>
           </thead>
           <tbody>
-          {data.data.map(res=>(
+          {data && data.data?data.data.map(res=>(
             <tr key={res.ID}>
               <td>{res.ID}</td>
               <td>{res.a}</td>
             </tr>
-          ))}
+          )):''}
           </tbody>
         </table>
+        <Button variant="contained" color="primary">
+          lala
+        </Button>
 
       </main>
 
